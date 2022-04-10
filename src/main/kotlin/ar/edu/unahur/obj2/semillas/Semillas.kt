@@ -1,5 +1,7 @@
 package ar.edu.unahur.obj2.semillas
 
+// PUNTO 1
+
     abstract class Planta(var altura: Double, val anioSemilla: Int) {
     open fun horasSolQueTolera() = 7
 
@@ -11,7 +13,7 @@ package ar.edu.unahur.obj2.semillas
 
 }
 
-class Menta(altura: Double, anioSemilla: Int) : Planta(altura, anioSemilla) {
+open class Menta(altura: Double, anioSemilla: Int) : Planta(altura, anioSemilla) {
 
     override fun daSemillas(): Boolean {
         return super.daSemillas() || altura > 0.4
@@ -22,7 +24,7 @@ class Menta(altura: Double, anioSemilla: Int) : Planta(altura, anioSemilla) {
     }
 }
 
-class Soja(altura: Double, anioSemilla: Int) : Planta(altura, anioSemilla) {
+open class Soja(altura: Double, anioSemilla: Int) : Planta(altura, anioSemilla) {
 
     override fun horasSolQueTolera() : Int {
         var tolerancia = 6
@@ -48,7 +50,7 @@ class Quinoa(var espacio : Double, altura: Double, anioSemilla: Int) : Planta(al
 
     override fun espacioQueOcupa() = espacio
 
-    override fun horasSolQueTolera(): Int { // NO SABEMOS SI ESTÁ BIEN
+    override fun horasSolQueTolera(): Int {
         var horas = super.horasSolQueTolera()
         if(espacioQueOcupa() < 0.3) {
             horas = 10
@@ -60,5 +62,17 @@ class Quinoa(var espacio : Double, altura: Double, anioSemilla: Int) : Planta(al
         return super.daSemillas() || (anioSemilla > 2001 && anioSemilla < 2008)
     }
 
+}
+
+// PUNTO 2
+
+class SojaTransgenica (altura: Double, anioSemilla: Int) : Soja(altura, anioSemilla) {
+    override fun daSemillas() = false
+}
+
+class Peperina(altura: Double, anioSemilla: Int) : Menta(altura, anioSemilla) {
+    override fun espacioQueOcupa(): Double {
+        return super.espacioQueOcupa() * 2
+    }
 }
 
