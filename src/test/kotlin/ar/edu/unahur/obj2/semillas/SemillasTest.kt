@@ -14,6 +14,7 @@ class SemillasTest : DescribeSpec ({
         val soja = Soja(0.6, 2009)
         val sojaTransgenica = SojaTransgenica(0.8, 2005)
         val peperina = Peperina(1.0, 2021)
+        val quinoa = Quinoa(1.0, 1.0, 2009)
 
         it("probamos los atributos altura  y anioSemilla") {
             menta.altura.shouldBe(1.0)
@@ -55,5 +56,23 @@ class SemillasTest : DescribeSpec ({
             ).sum()
             Math.ceil(superficie).shouldBe(4)
         }
+
+        describe("verifico si a las plantas les resulta ideal una parcela") {
+            val parcela1 = Parcela(3, 3, 8, mutableListOf(soja, menta))
+            val parcela2 = Parcela(1, 2, 5, mutableListOf(mentita, menta))
+
+            it("verifico que a la menta, la peperina y la soja común les resulta ideal la parcela") {
+                menta.leResultaIdeal(parcela1).shouldBeTrue()
+                peperina.leResultaIdeal(parcela1).shouldBeTrue()
+                soja.leResultaIdeal(parcela1).shouldBeTrue()
+
+            }
+
+            it("verifico que a la quinoa le resulta ideal la parcela y a la soja transgénica no") {
+                quinoa.leResultaIdeal(parcela2).shouldBeTrue()
+                sojaTransgenica.leResultaIdeal(parcela2).shouldBeFalse()
+            }
+        }
+
     }
 })

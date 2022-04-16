@@ -1,6 +1,9 @@
 package ar.edu.unahur.obj2.semillas
 
-class Parcela(val ancho : Int, val largo : Int, val hsDeSol : Int, var plantas : MutableList<Planta>) {
+// no podemos hacer la clase Parcela abstracta ya que necesitamos instanciarla en los tests del Punto 3
+// por ende no podemos declarar el método seAsociaBien de forma abstracta para heredarlo en las subclases
+open class Parcela(val ancho : Int, val largo : Int, val hsDeSol : Int, var plantas : MutableList<Planta>) {
+
     fun superficie() = ancho * largo
 
     fun cantidadMaximaDePlantas() : Int {
@@ -25,5 +28,19 @@ class Parcela(val ancho : Int, val largo : Int, val hsDeSol : Int, var plantas :
         else {
             plantas.add(planta)
         }
+    }
+}
+
+class ParcelaEcologica(ancho: Int, largo: Int, hsDeSol: Int, plantas: MutableList<Planta>) : Parcela(ancho, largo, hsDeSol, plantas) {
+
+    fun seAsociaBien(planta: Planta): Boolean { //
+        return this.tieneComplicaciones().not() && planta.leResultaIdeal(this)
+    }
+}
+
+class ParcelaIndustrial(ancho: Int, largo: Int, hsDeSol: Int, plantas: MutableList<Planta>) : Parcela(ancho, largo, hsDeSol, plantas) {
+
+    fun seAsociaBien(planta: Planta): Boolean {
+        return this.plantas.size <= 2 && planta.esFuerte()
     }
 }
