@@ -9,5 +9,6 @@ object Inta {
 
     fun promedioPlantasPorParcela() = this.totalPlantasEnParcela() / parcelas.size
 
+    fun parcelaMasAutosustentable() = parcelas.filter ({ p -> p.plantas.size > 4 }).maxBy { p -> p.porcentajePlantasBienAsociadas()  }
 
 }
