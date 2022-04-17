@@ -15,7 +15,7 @@ class ParcelasTest : DescribeSpec({
         val soja5 = Soja(0.7, 2010)
         val quinoa = Quinoa(0.2, 2.2, 2015)
 
-        val parcela = Parcela(20, 1, 10, mutableListOf(soja1, soja2, soja3, soja4))
+        val parcela = ParcelaEcologica(20, 1, 10, mutableListOf(soja1, soja2, soja3, soja4))
         val parcelaEco = ParcelaEcologica(10, 3, 8, mutableListOf(soja1, soja2))
         val parcelaInd = ParcelaIndustrial(5, 3, 10, mutableListOf(soja3, soja4))
 

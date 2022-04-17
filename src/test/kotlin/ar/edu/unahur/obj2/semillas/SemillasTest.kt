@@ -58,8 +58,8 @@ class SemillasTest : DescribeSpec ({
         }
 
         describe("verifico si a las plantas les resulta ideal una parcela") {
-            val parcela1 = Parcela(3, 3, 8, mutableListOf(soja, menta))
-            val parcela2 = Parcela(1, 2, 5, mutableListOf(mentita, menta))
+            val parcela1 = ParcelaEcologica(3, 3, 8, mutableListOf(soja, menta))
+            val parcela2 = ParcelaEcologica(1, 2, 5, mutableListOf(mentita, menta))
 
             it("verifico que a la menta, la peperina y la soja común les resulta ideal la parcela") {
                 menta.leResultaIdeal(parcela1).shouldBeTrue()
